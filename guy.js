@@ -23,7 +23,7 @@ function keyUpHandler(e){
 
 
 
-function move(level, guy, upWait, flipWait, gravity){
+function moveFrame(level, guy, upWait, flipWait, gravity){
 	
 	//First check if the player has pressed Up button at a portal. The variable upWait will be set to
 	//true if they have just come from a portal, so they don't boing back and forth between two portals 
@@ -33,7 +33,7 @@ function move(level, guy, upWait, flipWait, gravity){
 	if(pressed==U){
 		flipWait=false;
 		if(!upWait){
-			return checkPortal(level,guy,upWait, flipWait, gravity);
+			return checkUpPress(level,guy,upWait, flipWait, gravity);
 		}else{
 			return makeMove(level, guy, true, flipWait, gravity,false);
 		}
@@ -121,12 +121,12 @@ function makeMove(level, guy, upWait, flipWait, gravity,wall){
 
 						//if we are on a moving floor, we increment the guy as detailed in the data for the level
 						//so that he moves with the floor
-						if(f.type=="move"){
+						if(f.type==move){
 							moveIncrement(guy,level,gravity,f);
 						}
 
 						//If we hit a flipper, draw the flip as detailed in flipTime function
-						if(f.type=="flip" && !flipWait){						
+						if(f.type==flip && !flipWait){						
 							[gravity, flipWait]=flipTime(guy,level,gravity,f);
 						}
 					}
@@ -143,11 +143,11 @@ function makeMove(level, guy, upWait, flipWait, gravity,wall){
 							guy.theta=gravity*Math.atan((f.right.y-f.left.y)/(f.right.x-f.left.x));
 							guy.fallingFrames=0;
 
-							if(f.type=="move"){
+							if(f.type==move){
 								moveIncrement(guy,level,gravity,f);
 							}
 
-							if(f.type=="flip" && !flipWait){						
+							if(f.type==flip && !flipWait){						
 								[gravity, flipWait]=flipTime(guy,level,gravity,f);
 							}
 						
@@ -210,7 +210,7 @@ function checkFrozen(guy,f,level,gravity){
 			if(checkx //in range of that floor (xwise)
 				&& checky<20 //below the floor
 				&& checky>18.5 //but not too far away
-				&& w.type!="bridge"){  //except for bridges, obvi
+				&& w.type!=bridge){  //except for bridges, obvi
 					
 					//if those conditions are met, undo the increment to guy.x that was done in move()
 					if(pressed==R){guy.x-=1;}
@@ -227,7 +227,7 @@ function drawGuy(guy, level, gravity){
 	
 	//every frame, update the moving floor, draw the background, and draw the guy
 	for(f of levels[level].floor){
-		if(f.type=="move"){
+		if(f.type==move){
 			f.update(guy.time);
 		}
 	}
@@ -273,7 +273,8 @@ function checkFlag(guy,level,gravity){
 		}else{return false;}
 }
 
-function checkPortal(level, guy, upWait, flipWait, gravity){
+function checkUpPress(level, guy, upWait, flipWait, gravity){
+	
 	for(p of levels[level].portals){
 		
 		//check if we are at the x-y point for p.a, and move if so
@@ -286,14 +287,35 @@ function checkPortal(level, guy, upWait, flipWait, gravity){
 				}
 	}
 	
+	for(b of levels[level].buttons){
+		if(checkButton(guy,b.x,b.y,gravity)){
+			for(f of levels[level].floor){
+				if(f.type==button && f.trig==b.trigger){
+					pressed=N;
+					upWait=true;
+					pause=true;
+					drawSwitch(f,level,gravity);
+				}
+				
+			}
+		}
+	}
+	
 	//otherwise just make a normal move
 	return makeMove(level, guy, upWait, flipWait, gravity,false);
 	
 }
 
+function checkButton(guy, x, y, g){
+	var checkx = (guy.x+3-x)*(guy.x-x-12)<0;
+	var checky = (guy.y+2*g-(225*(1-g)+g*y))*(guy.y+2*g-(20+225*(1-g)+g*y))<0;
+	return( checkx && checky);
+	
+}
+
 function checkForPortal(guy, x, y, g){
 	var checkx = (guy.x+3-x)*(guy.x-x-12)<0;
-	var checky = (guy.y+2*g-(225*(1-g)+g*y))*(guy.y+2*g-(20+225*(1-g)+g*y))<0
+	var checky = (guy.y+2*g-(225*(1-g)+g*y))*(guy.y+2*g-(20+225*(1-g)+g*y))<0;
 	return( checkx && checky);
 }
 

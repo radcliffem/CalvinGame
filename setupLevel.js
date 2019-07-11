@@ -94,13 +94,13 @@ function setup(level){
 		}
 		
 		//if not paused for flipping, we make a move
-		
+
 		if(!pause){
 			guy.time +=1;
 			if(pressed!=N){startClock=true;}
 			
 			//move function is in the guy.js file, and controls the motion of the guy
-			[___, upWait, flipWait,gravity]=move(level,guy,upWait,flipWait,gravity);
+			[___, upWait, flipWait,gravity]=moveFrame(level,guy,upWait,flipWait,gravity);
 		
 			//gravity is set to 0 only if you have fallen off the world
 			if(gravity==0){
