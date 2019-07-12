@@ -99,6 +99,11 @@ function setup(level,world){
 	
 	document.getElementById("startOver").onclick=function(){
 		clearInterval(a);
+		for(f of levels[level].floor){
+			if(f.type==button){
+				f.state=0;
+			}
+		}
 		setup(level,world);
 	}
 	
@@ -146,6 +151,11 @@ function setup(level,world){
 			if(gravity==0){
 				alert("Oh no! You should probably try that again.");
 				clearInterval(a);
+				for(f of levels[level].floor){
+					if(f.type==button){
+						f.state=0;
+					}
+				}
 				setup(level,world);
 			}
 			
