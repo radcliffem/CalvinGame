@@ -81,17 +81,17 @@ function drawFloor(ctx,level,gravity){
 		else if(f.type==flip){
 			ctx.lineWidth=0.5;
 			ctx.strokeStyle="blue";
-			var Rad=2;
+			var Rad=width/(4*(Math.floor(width/8)+1));
 
 			//wavy floors are constructed as half-circles pasted together
 
-			for(var i=0;i<width/8;i++){
+			for(var i=0;i<=width/8;i++){
 				ctx.beginPath();
-				ctx.arc(Rad+8*i,0,Rad,Math.PI,2*Math.PI);		
+				ctx.arc(Rad+4*i*Rad,0,Rad,Math.PI,2*Math.PI);		
 				
 				ctx.stroke();
 				ctx.beginPath();			
-				ctx.arc(3*Rad+8*i,0,Rad,0,Math.PI);
+				ctx.arc(3*Rad+4*i*Rad,0,Rad,0,Math.PI);
 				ctx.stroke();
 			}
 		}	

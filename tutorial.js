@@ -63,7 +63,7 @@ tutorial = [
    floor: [{left:{x: 180, y: 295.5}, right: {x: 220, y: 295.5}, type: floor},
      {left:{x: 210, y: 275.5}, right: {x: 245, y: 275.5}, type: floor},
      {left:{x: 260, y: 275.5}, right: {x: 310, y: 275.5}, type: floor},
-     {left:{x: 310, y: 275.5}, right: {x: 343, y: 275.5}, type: flip},
+     {left:{x: 310, y: 275.5}, right: {x: 350, y: 275.5}, type: flip},
      {left:{x: 220, y: 175.5}, right: {x: 245, y: 154.5}, type: floor},
      {left:{x: 350, y: 275.5}, right: {x: 400, y: 275.5}, type: floor},
      {left:{x: 180, y: 175.5}, right: {x: 220, y: 175.5}, type: floor},

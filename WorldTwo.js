@@ -44,7 +44,7 @@ worldTwo = [
     {color: "red", a:{x: 220, y: 164.5, theta: 0, loc: 1}, b: {x: 125, y: 86.5, theta: 0, loc: 1}},
     {color: "blue", a:{x: 250, y: 86.5, theta: 0, loc: 1}, b: {x: 350, y: 46.5, theta: 0, loc: -1}},
     {color: "green", a:{x: 425, y: 46.5, theta: 0, loc: -1}, b: {x: 325, y: 246.5, theta: 0, loc: -1}},
-    {color: "green", a:{x: 475, y: 46.5, theta: 0, loc: -1}, b: {x: 260, y: 246.5, theta: 0, loc: -1}}
+    {color: "green", a:{x: 475, y: 46.5, theta: 0, loc: -1}, b: {x: 255, y: 246.5, theta: 0, loc: -1}}
   ],
   startx: 200,
   starty: 224.5},
