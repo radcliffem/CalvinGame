@@ -69,6 +69,7 @@ function drawFloor(ctx,level,gravity){
 			ctx.fillRect(0,0,width,2);
 		}
 		else if(f.type==bridge){
+			ctx.translate(0,1);
 			ctx.beginPath();
 			ctx.strokeStyle="#a0522d";
 			var a=4; //sometime play with this parameter
