@@ -346,7 +346,7 @@ score:50,
 startx:127,
 starty:49 },
 
-{levelText:"Button, button, who's got the button?",
+{levelText:"BUTTON, BUTTON, WHO'S GOT THE BUTTON?",
 floor:[{left:{x:202,y:135},right:{x:262,y:135},type:floor},
 	{left:{x:262,y:135},right:{x:277,y:135},type:flip},
 	{left:{x:277,y:135},right:{x:397,y:135},type:floor},
