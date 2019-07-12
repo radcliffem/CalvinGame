@@ -349,6 +349,7 @@ function spriteSheet(){
 	};
 	
 	this.draw=function(guy){
+		guy.ctx.save();
 		guy.ctx.translate(guy.x,guy.y);
 		guy.ctx.rotate(guy.theta);
 		if(pressed==L){guy.ctx.scale(-1,1);}
@@ -360,7 +361,7 @@ function spriteSheet(){
 			frameWidth,frameHeight,
 			-5,-23,
 			15,22);
-		guy.ctx.setTransform(1,0,0,1,0,0);
+		guy.ctx.restore();
 	};
 }
 
