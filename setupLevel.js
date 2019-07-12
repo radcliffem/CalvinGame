@@ -4,10 +4,17 @@ var pause=false;
 var time=0;
 var score=0;
 var levelScores={};
+var levelTimes={};
 var levels=[];
 
+if(window.localStorage.getItem('scores')!=undefined){
+	levelScores = JSON.parse(window.localStorage.getItem('scores'));
+	levelTimes = JSON.parse(window.localStorage.getItem('times'));
+	setInitialScores();
+}
 
 function switchToPlay(){
+	
 	for(e of document.getElementsByClassName("intro")){
 		e.style.display="none";
 	}
@@ -21,8 +28,12 @@ document.getElementById("worldOneButton").onclick=function(){
 	switchToPlay();
 	
 	levels = worldOne;
-	levelScores.worldOneScores = new Array(levels.length).fill(0);
-	levelScores.worldOne = 0;
+	if(levelScores.worldOne==undefined){
+		levelScores.worldOneScores = new Array(levels.length).fill(0);
+		levelScores.worldOne = 0;
+		levelTimes.worldOne=new Array(levels.length).fill(0);
+		saveScores();
+	}
 	
 	setup(0,"worldOne");
 }
@@ -32,8 +43,12 @@ document.getElementById("worldTwoButton").onclick=function(){
 	switchToPlay();
 	
 	levels = worldTwo;
-	levelScores.worldTwoScores = new Array(levels.length).fill(0);
-	levelScores.worldTwo = 0;
+	if(levelScores.worldTwo==undefined){
+		levelScores.worldTwoScores = new Array(levels.length).fill(0);
+		levelScores.worldTwo = 0;	
+		levelTimes.worldTwo=new Array(levels.length).fill(0);
+		saveScores();
+	}
 	
 	setup(0,"worldTwo");
 }
@@ -43,8 +58,12 @@ document.getElementById("worldThreeButton").onclick=function(){
 	switchToPlay();
 	
 	levels = worldThree;
-	levelScores.worldThreeScores = new Array(levels.length).fill(0);
-	levelScores.worldThree = 0;
+	if(levelScores.worldThree == undefined){
+		levelScores.worldThreeScores = new Array(levels.length).fill(0);
+		levelScores.worldThree = 0;		
+		levelTimes.worldThree=new Array(levels.length).fill(0);
+		saveScores();
+	}
 	
 	setup(0,"worldThree");
 }
@@ -57,8 +76,12 @@ document.getElementById("tutorialButton").onclick=function() {
 	switchToPlay();
 	
 	levels = tutorial;
-	levelScores.tutorialScores = new Array(levels.length).fill(0);
-	levelScores.tutorial = 0;
+	if(levelScores.tutorial == undefined){
+		levelScores.tutorialScores = new Array(levels.length).fill(0);
+		levelScores.tutorial = 0;		
+		levelTimes.tutorial=new Array(levels.length).fill(0);
+		saveScores();
+	}
 	
 	setup(0,"tutorial");
 }
@@ -70,7 +93,8 @@ function setup(level,world){
 	lastPressed=N;
 	var startClock=false;
 	var gravity=1;
-	document.getElementById("score").innerHTML=levelScores[world];
+	document.getElementById("bestScore").innerHTML=levelScores[world+"Scores"][level];
+	document.getElementById("bestTime").innerHTML = levelTimes[world][level];
 	
 	drawBackground(level,gravity);
 	document.getElementById("levelMessage").innerText=(level+1)+". "+levels[level].levelText;		
@@ -97,7 +121,18 @@ function setup(level,world){
 	document.getElementById("forwardOne").onclick=function(){
 		clearInterval(a);
 		time=0;
-		setup(level+1,world);
+		if(level==levels.length){
+			resetButtons(level);
+
+
+			for(e of document.getElementsByClassName("intro")){
+				e.style.display="block";
+			}
+			for(e of document.getElementsByName("playing")){
+				e.style.display="none";
+			}
+		}else{setup(level+1,world);}
+
 	}
 	
 	document.getElementById("startOver").onclick=function(){
@@ -190,6 +225,12 @@ function setup(level,world){
 				//trigger an appropriate message to start the "real" game. Otherwise, continue on.
 				if(level==levels.length-1){
 					levelScores[world]=levelScores[world]+scoreAcheived;
+					if(levelTimes[world][level]==0 || time<levelTimes[world][level]){
+						levelTimes[world][level]=Math.round(time*100-1)/100;
+					}
+					saveScores();
+					
+						
 					document.getElementById(world+"Score").innerText = levelScores[world]+"/"+(50*levels.length);
 					
 					time=0;
@@ -205,6 +246,12 @@ function setup(level,world){
 				}
 				else{
 					levelScores[world] = levelScores[world]+scoreAcheived;
+					if(levelTimes[world][level]==0 || Math.round(time*100)/100<levelTimes[world][level]){
+						levelTimes[world][level]=Math.round(time*100-1)/100;
+					}
+					saveScores();
+					
+					
 					document.getElementById(world+"Score").innerText = levelScores[world]+"/"+(50*levels.length);
 					alert(congrats + "You scored "+scoreAcheived+" points! Try the next level.");
 					clearInterval(a);
@@ -216,4 +263,22 @@ function setup(level,world){
 		}
 	}, 10)
 	
+}
+
+function setInitialScores(){
+	setInitial("tutorial");
+	setInitial("worldOne");
+	setInitial("worldTwo");
+	setInitial("worldThree");
+}
+
+function setInitial(world){
+	if(levelScores[world]!=undefined){
+		document.getElementById(world+"Score").innerText=levelScores[world]+"/"+(50*levelScores[world+"Scores"].length);
+	}
+}
+
+function saveScores(){
+	window.localStorage.setItem('scores',JSON.stringify(levelScores));
+	window.localStorage.setItem('times',JSON.stringify(levelTimes));
 }

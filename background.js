@@ -80,7 +80,7 @@ function drawFloor(ctx,level,gravity){
 			ctx.closePath();
 		}
 		else if(f.type==flip){
-			ctx.lineWidth=0.5;
+			ctx.lineWidth=1;
 			ctx.strokeStyle="blue";
 			var Rad=width/(4*(Math.floor(width/8)+1));
 
@@ -106,7 +106,8 @@ function drawButtons(ctx, level, gravity){
 		for(b of levels[level].buttons){
   	  ctx.save();
 			ctx.beginPath();
-			ctx.arc(0,0,0.1,0,Math.PI)
+			ctx.lineJoin="round";
+			ctx.lineWidth=0.5;
 			ctx.translate(b.x+5*(1-gravity),225*(1-gravity)+gravity*b.y);
 			ctx.fillStyle=b.color;
 			ctx.strokeStyle="black";
