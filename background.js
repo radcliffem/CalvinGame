@@ -12,6 +12,16 @@ var button = 4;
 function drawBackground(level,gravity){
 	var backgroundCanvas=document.getElementById("floorCanvas");
 	var bgctx = backgroundCanvas.getContext("2d");
+	
+  // Scale up canvas by pixelRatio keeping same screen dimensions (do this once).
+	if (window.devicePixelRatio && !backgroundCanvas.dataset.is_scaled) {
+	  backgroundCanvas.dataset.is_scaled = 1;
+	  backgroundCanvas.style.width = backgroundCanvas.width + "px";
+	  backgroundCanvas.style.height = backgroundCanvas.height + "px";
+	  backgroundCanvas.width = devicePixelRatio * backgroundCanvas.width;
+	  backgroundCanvas.height = devicePixelRatio * backgroundCanvas.height;
+	  bgctx.scale(devicePixelRatio, devicePixelRatio);
+	}
 		
 	backgroundCanvas.style.letterSpacing = "-1px"
 	bgctx.clearRect(0,0,backgroundCanvas.width,backgroundCanvas.height);
@@ -21,13 +31,14 @@ function drawBackground(level,gravity){
 	drawButtons(bgctx, level, gravity);
 	
 
+	bgctx.save();
 	bgctx.translate(levels[level].flag.x,225*(1-gravity)+gravity*levels[level].flag.y)
 	bgctx.rotate(Math.PI/2*(1-gravity)+gravity*levels[level].flag.theta);
 	bgctx.font="25px Arial";
 	bgctx.strokeStyle = 'black';
 	bgctx.lineWidth=1;
 	bgctx.strokeText('\u2690',0,0);
-	bgctx.setTransform(1,0,0,1,0,0);
+	bgctx.restore();
 }
 
 
@@ -38,16 +49,18 @@ function drawBackground(level,gravity){
 function drawFloor(ctx,level,gravity){
 	for(w of levels[level].wall){
 		var width = w.bottom-w.top;
+	  ctx.save();
 		ctx.translate(w.x,225*(1-gravity)+gravity*w.top)
 		ctx.rotate(Math.sign(gravity)*Math.PI/2);
 		ctx.fillStyle="black";
 		ctx.fillRect(0,0,abs(gravity)*width,2);
-		ctx.setTransform(1,0,0,1,0,0)
+		ctx.restore()
 	}
 	
 	for(f of levels[level].floor){
 		var theta = Math.atan((f.right.y-f.left.y)/(f.right.x-f.left.x))
 		var width = Math.sqrt(pow(f.right.x-f.left.x,2)+pow(f.right.y-f.left.y,2))
+	  ctx.save();
 		ctx.translate(f.left.x,225*(1-gravity)+gravity*f.left.y);
 		ctx.rotate(gravity*theta);
 
@@ -82,7 +95,7 @@ function drawFloor(ctx,level,gravity){
 				ctx.stroke();
 			}
 		}	
-		ctx.setTransform(1,0,0,1,0,0)
+		ctx.restore()
 	}
 	
 }
@@ -90,6 +103,7 @@ function drawFloor(ctx,level,gravity){
 function drawButtons(ctx, level, gravity){
 	if(gravity!=0){
 		for(b of levels[level].buttons){
+  	  ctx.save();
 			ctx.beginPath();
 			ctx.arc(0,0,0.1,0,Math.PI)
 			ctx.translate(b.x+5*(1-gravity),225*(1-gravity)+gravity*b.y);
@@ -99,7 +113,7 @@ function drawButtons(ctx, level, gravity){
 			ctx.stroke();
 			ctx.fill();
 			ctx.closePath();
-			ctx.setTransform(1,0,0,1,0,0);
+			ctx.restore();
 		}
 	}
 }
@@ -155,16 +169,18 @@ function drawSwitch(f,level,gravity){
 
 function drawPortals(ctx,level,gravity){
 	for(p of levels[level].portals){
+	  ctx.save();
 		ctx.translate(p.a.x+20*sin(p.a.theta)+5*(1-gravity),225*(1-gravity)+gravity*(p.a.y-20*cos(p.a.theta)));
 		ctx.rotate(Math.PI/2*(1-gravity)+gravity*(p.a.theta));
 		ctx.fillStyle=p.color;
 		ctx.fillRect(0,0,10,20);
-		ctx.setTransform(1,0,0,1,0,0);
+		ctx.restore();
+	  ctx.save();
 		ctx.translate(p.b.x+20*sin(p.b.theta)+5*(1-gravity),225*(1-gravity)+gravity*(p.b.y-20*cos(p.b.theta)));
 		ctx.rotate(Math.PI/2*(1-gravity)+gravity*(p.b.theta));
 		ctx.fillStyle=p.color;
 		ctx.fillRect(0,0,10,20);
-		ctx.setTransform(1,0,0,1,0,0);
+		ctx.restore();
 	}
 }
 

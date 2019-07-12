@@ -109,6 +109,16 @@ function setup(level,world){
 	var guyCanvas=document.getElementById("guyCanvas");
 	var guyctx=guyCanvas.getContext("2d");
 	
+  // Scale up canvas by pixelRatio keeping same screen dimensions (do this once).
+	if (window.devicePixelRatio && !guyCanvas.dataset.is_scaled) {
+	  guyCanvas.dataset.is_scaled = 1;
+	  guyCanvas.style.width = guyCanvas.width + "px";
+	  guyCanvas.style.height = guyCanvas.height + "px";
+	  guyCanvas.width = devicePixelRatio * guyCanvas.width;
+	  guyCanvas.height = devicePixelRatio * guyCanvas.height;
+	  guyctx.scale(devicePixelRatio, devicePixelRatio);
+	}
+	
 	//positions and information about the guy are stored in variable guy, accessible throughout the 
 	//level play
 	
