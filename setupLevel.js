@@ -76,15 +76,7 @@ function setup(level,world){
 	document.getElementById("levelMessage").innerText=(level+1)+". "+levels[level].levelText;		
 	
 	document.getElementById("homeButton").onclick=function(){
-		for(f of levels[level].floor){
-			if(f.type==button){
-				f.state=0;
-				f.left.x = f.left.states[f.state].x;
-				f.right.x = f.right.states[f.state].x;
-				f.left.y = f.left.states[f.state].y;
-				f.right.y = f.right.states[f.state].y;
-			}
-		}
+		resetButtons(level);
 		
 		
 		for(e of document.getElementsByClassName("intro")){
@@ -110,15 +102,7 @@ function setup(level,world){
 	
 	document.getElementById("startOver").onclick=function(){
 		clearInterval(a);
-		for(f of levels[level].floor){
-			if(f.type==button){
-				f.state=0;
-				f.left.x = f.left.states[f.state].x;
-				f.right.x = f.right.states[f.state].x;
-				f.left.y = f.left.states[f.state].y;
-				f.right.y = f.right.states[f.state].y;
-			}
-		}
+		resetButtons(level);
 		setup(level,world);
 	}
 	
@@ -165,15 +149,7 @@ function setup(level,world){
 			//gravity is set to 0 only if you have fallen off the world
 			if(gravity==0){
 				alert("Oh no! You should probably try that again.");
-				for(f of levels[level].floor){
-					if(f.type==button){
-						f.state=0;
-						f.left.x = f.left.states[f.state].x;
-						f.right.x = f.right.states[f.state].x;
-						f.left.y = f.left.states[f.state].y;
-						f.right.y = f.right.states[f.state].y;
-					}
-				}
+				resetButtons(level);
 				clearInterval(a);
 				
 				setup(level,world);
@@ -184,15 +160,7 @@ function setup(level,world){
 			
 			solved=checkFlag(guy,level,gravity);
 			if(solved){
-				for(f of levels[level].floor){
-					if(f.type==button){
-						f.state=0;
-						f.left.x = f.left.states[f.state].x;
-						f.right.x = f.right.states[f.state].x;
-						f.left.y = f.left.states[f.state].y;
-						f.right.y = f.right.states[f.state].y;
-					}
-				}
+				resetButtons(level);
 				
 				var congrats="Good job! "
 				var scoreAcheived=(Math.round(50-time+levels[level].score));

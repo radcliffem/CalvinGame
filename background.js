@@ -19,6 +19,7 @@ function drawBackground(level,gravity){
 	drawPortals(bgctx, level, gravity);
 	drawFloor(bgctx, level, gravity);
 	drawButtons(bgctx, level, gravity);
+	
 
 	bgctx.translate(levels[level].flag.x,225*(1-gravity)+gravity*levels[level].flag.y)
 	bgctx.rotate(Math.PI/2*(1-gravity)+gravity*levels[level].flag.theta);
@@ -74,18 +75,35 @@ function drawFloor(ctx,level,gravity){
 			for(var i=0;i<width/8;i++){
 				ctx.beginPath();
 				ctx.arc(Rad+8*i,0,Rad,Math.PI,2*Math.PI);		
+				
 				ctx.stroke();
-				ctx.closePath();
 				ctx.beginPath();			
 				ctx.arc(3*Rad+8*i,0,Rad,0,Math.PI);
 				ctx.stroke();
-				ctx.closePath();
 			}
 		}	
 		ctx.setTransform(1,0,0,1,0,0)
 	}
 	
 }
+
+function drawButtons(ctx, level, gravity){
+	if(gravity!=0){
+		for(b of levels[level].buttons){
+			ctx.beginPath();
+			ctx.arc(0,0,0.1,0,Math.PI)
+			ctx.translate(b.x+5*(1-gravity),225*(1-gravity)+gravity*b.y);
+			ctx.fillStyle=b.color;
+			ctx.strokeStyle="black";
+			ctx.rect(0,-15,10,10);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+			ctx.setTransform(1,0,0,1,0,0);
+		}
+	}
+}
+
 
 
 function drawSwitch(f,level,gravity){
@@ -131,18 +149,6 @@ function drawSwitch(f,level,gravity){
 	
 }
 
-function drawButtons(ctx, level, gravity){
-	if(gravity!=0){
-		for(b of levels[level].buttons){
-			ctx.translate(b.x+5*(1-gravity),225*(1-gravity)+gravity*b.y);
-			ctx.fillStyle=b.color;
-			ctx.rect(0,-15,10,10);
-			ctx.stroke();
-			ctx.fill();
-			ctx.setTransform(1,0,0,1,0,0);
-		}
-	}
-}
 
 
 //drawPortals goes through the portals array and draws both the a-side and b-side
@@ -175,4 +181,16 @@ function drawFlip(level, gravity){
 			pause=false;
 		}
 	},15)
+}
+
+function resetButtons(level){
+	for(f of levels[level].floor){
+		if(f.type==button){
+			f.state=0;
+			f.left.x = f.left.states[f.state].x;
+			f.right.x = f.right.states[f.state].x;
+			f.left.y = f.left.states[f.state].y;
+			f.right.y = f.right.states[f.state].y;
+		}
+	}
 }
