@@ -108,10 +108,10 @@ function drawButtons(ctx, level, gravity){
 			ctx.beginPath();
 			ctx.lineJoin="round";
 			ctx.lineWidth=0.5;
-			ctx.translate(b.x+5*(1-gravity),225*(1-gravity)+gravity*b.y);
+			ctx.translate(b.x+2.5*(1-gravity),225*(1-gravity)+gravity*(b.y-15)-5*(1-gravity));
 			ctx.fillStyle=b.color;
 			ctx.strokeStyle="black";
-			ctx.rect(0,-15,10,10);
+			ctx.rect(0,0,10,10);
 			ctx.stroke();
 			ctx.fill();
 			ctx.closePath();

@@ -166,6 +166,7 @@ function makeMove(level, guy, upWait, flipWait, gravity,wall){
 //y-value and then do some falling stuff
 
 	if(!safe){
+		flipWait = false;
 		guy.y+=1;
 		if(guy.fallingFrames>2){
 			//if he's been falling for more than 2 frames, we decide to believe he's falling for realsies.
