@@ -274,6 +274,10 @@ function setInitialScores(){
 
 function setInitial(world){
 	if(levelScores[world]!=undefined){
+		while(levelScores[world+"Scores"].length<eval(world).length){
+			levelScores[world+"Scores"].push(0);
+			levelTimes[world].push(0);
+		}
 		document.getElementById(world+"Score").innerText=levelScores[world]+"/"+(50*levelScores[world+"Scores"].length);
 	}
 }
