@@ -463,7 +463,7 @@ buttons:[{x:153,y:175,trigger:1,color:"green"},
 portals:[{color:"red",a:{x:275,y:175,theta:0,loc:1},b:{x:160,y:95,theta:0,loc:-1}},
 	{color:"orange",a:{x:185,y:175,theta:0,loc:1},b:{x:415,y:225,theta:0,loc:1}}],
 flag:{x:197,y:300,theta:0},
-score:30,
+score:22,
 startx:210,
 starty:175
 }
