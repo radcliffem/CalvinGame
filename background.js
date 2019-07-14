@@ -203,6 +203,12 @@ function drawFlip(level, gravity){
 
 function resetButtons(level){
 	for(f of levels[level].floor){
+		if(f.type==move){
+			f.left.x = f.init.left.x;
+			f.left.y = f.init.left.y;
+			f.right.x = f.init.right.x;
+			f.right.y = f.init.right.y;
+		}
 		if(f.type==button){
 			f.state=0;
 			f.left.x = f.left.states[f.state].x;
