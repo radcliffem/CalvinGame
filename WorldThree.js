@@ -561,7 +561,6 @@ floor:[{left:{x:475,y:80},right:{x:551,y:80},type:floor},
 	{type:move,left:{x:65,y:225},right:{x:105,y:225},
 		update:function(t){
 			if(t%870<435){
-				console.log(this.left.x)
 				this.left.x +=1;
 				this.right.x +=1;
 			}else{
@@ -605,7 +604,7 @@ floor:[{left:{x:475,y:80},right:{x:551,y:80},type:floor},
 		}},
 	{type:button,state:0,trig:3,
 		left:{x:0,y:0,states:[{x:0,y:0},{x:245,y:400},{x:245,y:400}]},
-		right:{x:0,y:0,states:[{x:0,y:0},{x:300,y:375},{x:300,y:375}]}},
+		right:{x:0,y:0,states:[{x:0,y:0},{x:300,y:374},{x:300,y:374}]}},
 	{left:{x:384,y:325},right:{x:470,y:325},type:floor},
 	{left:{x:470,y:325},right:{x:485,y:325},type:flip}],
 wall:[{top:50,bottom:200,x:551},
