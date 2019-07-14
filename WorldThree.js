@@ -516,5 +516,140 @@ portals:[{color: "#3cb44b", a:{x: 90, y: 250, theta: 0, loc: 1}, b: {x: 290, y: 
   {color: "#911eb4", a:{x: 360, y: 210, theta: 0, loc: -1}, b: {x: 420, y: 160, theta: 0, loc: 1}}],
 startx: 105, 
 starty: 250,
-score:45}
+score:45},
+	
+{levelText:"FUNHOUSE",
+floor:[{left:{x:475,y:80},right:{x:551,y:80},type:floor},
+	{left:{x:460,y:80},right:{x:475,y:80},type:flip},
+	{left:{x:420,y:160},right:{x:475,y:160},type:floor},
+	{left:{x:405,y:160},right:{x:420,y:160},type:flip},
+	{left:{x:405,y:50},right:{x:551,y:50},type:floor},
+	{left:{x:390,y:50},right:{x:405,y:50},type:flip},
+	{left:{x:350,y:120},right:{x:415,y:120},type:floor},
+	{left:{x:335,y:120},right:{x:350,y:120},type:flip},
+	{left:{x:315,y:50},right:{x:390,y:50},type:floor},
+	{left:{x:300,y:50},right:{x:315,y:50},type:flip},
+	{left:{x:50,y:50},right:{x:300,y:50},type:floor},
+	{left:{x:285,y:200},right:{x:300,y:200},type:flip},
+	{left:{x:300,y:200},right:{x:480,y:200},type:floor},
+	{left:{x:480,y:200,states:[{x:480,y:200},{x:0,y:0}]},
+		right:{x:551,y:200,states:[{x:551,y:200},{x:0,y:0}]},
+		type:button,state:0,trig:1},
+	{left:{x:260,y:120},right:{x:335,y:120},type:floor},
+	{left:{x:245,y:120},right:{x:260,y:120},type:flip},
+	{left:{x:280,y:80},right:{x:295,y:80},type:flip},
+	{left:{x:200,y:80},right:{x:280,y:80},type:floor},
+	{left:{x:185,y:80},right:{x:200,y:80},type:flip},
+	{left:{x:175,y:160},right:{x:210,y:160},type:floor},
+	{left:{x:160,y:160},right:{x:175,y:160},type:flip},
+	{left:{x:145,y:160},right:{x:160,y:160},type:floor},
+	{left:{x:180,y:200},right:{x:195,y:200},type:flip},
+	{left:{x:50,y:200},right:{x:180,y:200},type:floor},
+	{left:{x:195,y:200},right:{x:285,y:200},type:floor},
+	{left:{x:0,y:0,states:[{x:0,y:0},{x:90,y:200}]},
+		right:{x:0,y:0,states:[{x:0,y:0},{x:145,y:160}]},
+		type:button,trig:1,state:0},
+	{left:{x:50,y:400},right:{x:150,y:400},type:floor},
+	{left:{x:150,y:400},right:{x:165,y:400},type:flip},
+	{left:{x:165,y:400},right:{x:551,y:400},type:floor},
+	{left:{x:50,y:250,states:[{x:50,y:250},{x:0,y:0}]},
+		right:{x:217,y:250,states:[{x:217,y:250},{x:0,y:0}]},
+		type:button,trig:1,state:0},
+	{left:{x:60,y:225,states:[{x:60,y:225},{x:0,y:0}]},
+			right:{x:545,y:225,states:[{x:545,y:225},{x:0,y:0}]},
+			type:button,state:0,trig:1},
+	{type:move,left:{x:65,y:225},right:{x:105,y:225},
+		update:function(t){
+			if(t%870<435){
+				this.left.x +=1;
+				this.right.x +=1;
+			}else{
+				this.left.x -=1;
+				this.right.x -=1;
+			}
+		},
+		guyChange: function(t,x,y){
+			if(t%870<435){
+				return([x+1,y]);
+			}else{
+				return([x-1,y]);
+			}
+		}},
+	{left:{x:0,y:0,states:[{x:0,y:0},{x:100,y:350}]},
+		right:{x:0,y:0,states:[{x:0,y:0},{x:150,y:350}]},
+		type:button,trig:4,state:0},
+	{left:{x:95,y:300},right:{x:155,y:300},type:move,
+		update:function(t){
+			var check = Math.ceil(t/60/Math.PI);
+			if(check%2 ==1){
+				this.left.x = 125-30*sin(t/60);
+				this.left.y = 300-30*cos(t/60);
+				this.right.x = 125+30*sin(t/60);
+				this.right.y = 300+30*cos(t/60);
+			}else{
+				this.left.x = 125+30*sin(t/60);
+				this.left.y = 300+30*cos(t/60);
+				this.right.x = 125-30*sin(t/60);
+				this.right.y = 300-30*cos(t/60);
+			}
+		},
+		guyChange:function(t,x,y){
+
+			var dist = Math.sqrt(Math.pow(x-125,2)+Math.pow(y-300,2));
+			if(x>120){
+				return([125+dist*sin(t/60),300+dist*cos(t/60)])
+			}else{
+				return([125+dist*sin(t/60),300+dist*cos(t/60)])
+			}	
+		}},
+		{left:{x:217,y:250,states:[{x:217,y:250},{x:0,y:0}]},
+			right:{x:384,y:250,states:[{x:384,y:250},{x:0,y:0}]},
+			type:button,trig:2,state:0},
+		{left:{x:384,y:250,states:[{x:384,y:250},{x:0,y:0},{x:384,y:250}]},
+			right:{x:551,y:250,states:[{x:551,y:250},{x:0,y:0},{x:467.5,y:250}]},
+			type:button,trig:3,state:0},
+		{type:move,left:{x:240,y:325},right:{x:270,y:325},
+			update:function(t){
+				if(t%198<99){
+					this.left.x +=1;
+					this.right.x +=1;
+				}else{
+					this.left.x -=1;
+					this.right.x -=1;
+				}
+			},
+			guyChange: function(t,x,y){
+				if(t%198<99){
+					return([x+1,y]);
+				}else{
+					return([x-1,y]);
+				}
+			}},
+		{type:button,state:0,trig:3,
+			left:{x:0,y:0,states:[{x:0,y:0},{x:245,y:400},{x:245,y:400}]},
+			right:{x:0,y:0,states:[{x:0,y:0},{x:299,y:375},{x:299,y:375}]}},
+		{left:{x:384,y:325},right:{x:470,y:325},type:floor},
+		{left:{x:470,y:325},right:{x:485,y:325},type:flip}
+		],
+wall:[{top:50,bottom:200,x:551},
+	{top:50,bottom:200,x:50},
+	{top:250,bottom:400,x:50},
+	{top:250,bottom:400,x:217},
+	{top:250,bottom:400,x:384},
+	{top:250,bottom:400,x:551},
+	{top:170,bottom:200,x:270},
+	{top:80,bottom:160,x:210},
+	{top:325,bottom:400,x:470},
+	{top:375,bottom:400,x:300}],
+buttons:[{x:395,y:400,trigger:1,color:"cyan"},
+	{x:80,y:400,trigger:4,color:"magenta"},
+	{x:122.5,y:350,trigger:2,color:"lavender"},
+	{x:240,y:400,trigger:3,color:"blue"}],
+portals:[{color:"lime",a:{x:75,y:200,theta:0,loc:1},b:{x:425,y:400,theta:0,loc:1}},
+	{color:"pink",a:{x:425,y:325,theta:0,loc:1},b:{x:350,y:400,theta:0,loc:1}}],
+flag:{x:525,y:400,theta:0},
+score:30,
+startx:530,
+starty:80}
+
 ]
