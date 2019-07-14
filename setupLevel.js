@@ -88,7 +88,7 @@ document.getElementById("tutorialButton").onclick=function() {
 
 //setup() is called to start a new level every time a new level is needed.
 
-function setup(level,world,guyTime=0){
+function setup(level,world){
 	pressed=N;
 	lastPressed=N;
 	var startClock=false;
@@ -163,7 +163,7 @@ function setup(level,world,guyTime=0){
 		fallingFrames:0,
 		canvas:guyCanvas,
 		ctx:guyctx,
-		time: guyTime}
+		time: 0}
 		
 	var solved=false;
 	var upWait=false;
@@ -197,7 +197,7 @@ function setup(level,world,guyTime=0){
 				resetButtons(level);
 				clearInterval(a);
 				
-				setup(level,world,guy.time);
+				setup(level,world);
 			}
 			
 			//checkFlag determines if the guy is touching the flag. If true, we set the score to be 50 (max),

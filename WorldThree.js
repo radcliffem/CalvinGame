@@ -11,6 +11,7 @@ floor:[{left:{x:149,y:164},right:{x:239,y:75},type:floor},
 	{left:{x:150,y:250},right:{x:170,y:250},type:flip},
 	{left:{x:250,y:225},right:{x:350,y:225},type:floor},
 	{left:{x:0,y:0},right:{x:0,y:0},type:move,
+		init:{left:{x:0,y:0},right:{x:0,y:0}},
 		update: function(t){
 			this.left.x = 275+100*sin(t/100);
 			this.left.y = 225+100*cos(t/100);
@@ -21,6 +22,7 @@ floor:[{left:{x:149,y:164},right:{x:239,y:75},type:floor},
 		}
 	},
 	{left:{x:0,y:0},right:{x:0,y:0},type:move,
+		init:{left:{x:0,y:0},right:{x:0,y:0}},
 		update: function(t){
 			this.left.x = 275+100*sin(t/100+25*Math.PI);
 			this.left.y = 225+100*cos(t/100+25*Math.PI);
@@ -41,6 +43,7 @@ starty:223
 {levelText: "FROGGER",
 floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	{left:{x:0,y:200},right:{x:0,y:200},type:move,
+	init:{left:{x:0,y:200},right:{x:0,y:200}},
 	update: function(t){
 		if(2*t%300<100){
 			this.left.x = 302-2*t%100;
@@ -58,6 +61,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	}},
 	
 	{left:{x:0,y:125},right:{x:0,y:125},type:move,
+	init:{left:{x:0,y:125},right:{x:0,y:125}},
 	update: function(t){
 		if(t%250<50){
 			this.left.x = 100;
@@ -75,6 +79,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	}},
 	
 	{left:{x:0,y:125},right:{x:0,y:125},type:move,
+	init:{left:{x:0,y:125},right:{x:0,y:125}},
 	update: function(t){
 		if((t+85)%250<50){
 			this.left.x = 100;
@@ -92,6 +97,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	}},
 	
 	{left:{x:0,y:125},right:{x:0,y:125},type:move,
+	init:{left:{x:0,y:125},right:{x:0,y:125}},
 	update: function(t){
 		if((t+170)%250<50){
 			this.left.x = 100;
@@ -109,6 +115,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	}},
 	
 	{left:{x:0,y:275},right:{x:0,y:275},type:move,
+	init:{left:{x:0,y:275},right:{x:0,y:275}},
 	update: function(t){
 		if(t%230<30){
 			this.left.x = 100;
@@ -126,6 +133,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	}},
 	
 	{left:{x:0,y:275},right:{x:0,y:275},type:move,
+	init:{left:{x:0,y:275},right:{x:0,y:275}},
 	update: function(t){
 		if((t+56)%230<30){
 			this.left.x = 100;
@@ -143,6 +151,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	}},
 	
 	{left:{x:0,y:275},right:{x:0,y:275},type:move,
+	init:{left:{x:0,y:275},right:{x:0,y:275}},
 	update: function(t){
 		if((t+112)%230<30){
 			this.left.x = 100;
@@ -160,6 +169,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	}},		
 	
 	{left:{x:0,y:275},right:{x:0,y:275},type:move,
+	init:{left:{x:0,y:275},right:{x:0,y:275}},
 	update: function(t){
 		if((t+168)%230<30){
 			this.left.x = 100;
@@ -181,6 +191,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 	{left:{x:375,y:400},right:{x:425,y:400},type:floor},
 	
 	{left:{x:0,y:225},right:{x:0,y:225},type:move,
+		init:{left:{x:0,y:225},right:{x:0,y:225}},
 		update: function(t){
 			if(1.5*t%275<75){
 				this.left.x = 302;
@@ -198,6 +209,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 		}},
 	
 		{left:{x:0,y:225},right:{x:0,y:225},type:move,
+		init:{left:{x:0,y:225},right:{x:0,y:225}},
 			update: function(t){
 				if(1.5*(t+90)%275<75){
 					this.left.x = 302;
@@ -215,6 +227,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 			}},
 	
 				{left:{x:0,y:350},right:{x:0,y:350},type:move,
+				init:{left:{x:0,y:350},right:{x:0,y:350}},
 				update: function(t){
 					if((2*t/3)%230<30){
 						this.left.x = 500-(2*t/3)%230;
@@ -232,6 +245,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 				}},
 
 				{left:{x:0,y:350},right:{x:0,y:350},type:move,
+				init:{left:{x:0,y:350},right:{x:0,y:350}},
 				update: function(t){
 					if((2*t/3+56)%230<30){
 						this.left.x = 500-(2*t/3+56)%230;
@@ -249,6 +263,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 				}},
 
 				{left:{x:0,y:350},right:{x:0,y:350},type:move,
+				init:{left:{x:0,y:350},right:{x:0,y:350}},
 				update: function(t){
 					if((2*t/3+112)%230<30){
 						this.left.x = 500-(2*t/3+112)%230;
@@ -266,6 +281,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 				}},		
 
 				{left:{x:0,y:350},right:{x:0,y:350},type:move,
+				init:{left:{x:0,y:350},right:{x:0,y:350}},
 				update: function(t){
 					if((2*t/3+168)%230<30){
 						this.left.x = 500-(2*t/3+168)%230;
@@ -284,6 +300,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 				{left:{x:105,y:430},right:{x:495,y:430},type:floor},
 				
 				{left:{x:0,y:100},right:{x:0,y:100},type:move,
+				init:{left:{x:0,y:100},right:{x:0,y:100}},
 				update: function(t){
 					if((1/2*t)%250<50){
 						this.left.x = 302;
@@ -301,6 +318,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 				}},
 
 				{left:{x:0,y:100},right:{x:0,y:100},type:move,
+				init:{left:{x:0,y:100},right:{x:0,y:100}},
 				update: function(t){
 					if((1/2*t+85)%250<50){
 						this.left.x = 302;
@@ -318,6 +336,7 @@ floor:[{left:{x:100,y:50},right:{x:130,y:50},type:floor},
 				}},
 
 				{left:{x:0,y:100},right:{x:0,y:100},type:move,
+				init:{left:{x:0,y:100},right:{x:0,y:100}},
 				update: function(t){
 					if((1/2*t+170)%250<50){
 						this.left.x = 302;
@@ -467,56 +486,6 @@ score:22,
 startx:210,
 starty:175
 },
-{levelText:"THE IMPOSSIBLE STAIRCASE",
-floor:[{left:{x: 90, y: 250}, right: {x: 130, y: 250}, type: floor},
-  {left:{x: 100, y: 100}, right: {x: 340, y: 100}, type: floor},
-  {left:{x: 160, y: 220}, right: {x: 190, y: 220}, type: floor},
-  {left:{x: 160, y: 280}, right: {x: 180, y: 280}, type: floor},
-  {left:{x: 220, y: 190}, right: {x: 250, y: 190}, type: floor},
-  {left:{x: 220, y: 250}, right: {x: 250, y: 250}, type: floor},
-  {left:{x: 280, y: 160}, right: {x: 310, y: 160}, type: floor},
-  {left:{x: 280, y: 220}, right: {x: 310, y: 220}, type: floor},
-  {left:{x: 340, y: 130}, right: {x: 370, y: 130}, type: floor},
-  {left:{x: 340, y: 190}, right: {x: 370, y: 190}, type: floor},
-  {left:{x: 400, y: 100}, right: {x: 430, y: 100}, type: floor},
-  {left:{x: 400, y: 160}, right: {x: 430, y: 160}, type: floor},
-  {left:{x: 90, y: 100}, right: {x: 100, y: 100}, type: flip},
-  {left:{x: 180, y: 280}, right: {x: 190, y: 280}, type: flip},
-  {left:{x: 310, y: 240}, right: {x: 320, y: 240}, type: flip},
-  {left:{x:130,y:250,states:[{x:130,y:250},{x:130,y:250}]},
-  right:{x:160,y:220,states:[{x:160,y:220},{x:160,y:280}]},
-  type:button, trig:1, state:0},
-  {left:{x:190,y:220,states:[{x:190,y:220},{x:190,y:220}]},
-  right:{x:220,y:190,states:[{x:220,y:190},{x:220,y:250}]},
-  type:button, trig:2, state:0},
-  {left:{x:250,y:190,states:[{x:250,y:190},{x:250,y:190}]},
-  right:{x:280,y:220,states:[{x:280,y:220},{x:280,y:160}]},
-  type:button, trig:3, state:0},
-  {left:{x:310,y:160,states:[{x:310,y:160},{x:310,y:220}]},
-  right:{x:340,y:130,states:[{x:340,y:130},{x:340,y:190}]},
-  type:button, trig:4, state:0},
-  {left:{x:370,y:130,states:[{x:370,y:130},{x:370,y:130}]},
-  right:{x:400,y:160,states:[{x:400,y:160},{x:400,y:100}]},
-  type:button, trig:5, state:0}],
-wall:[{top:220,bottom:240,x:290},
-	 {top:220,bottom:240,x:300},
-	 {top:230,bottom:250,x:100}],
-buttons:[
-  {x:120,y:250,trigger:1,color:"#4363d8"},
-  {x:230,y:210,trigger:2,color:"#e6194B"},
-  {x:290,y:160,trigger:3,color:"#3cb44b"},
-  {x:350,y:150,trigger:4,color:"#f58231"},
-  {x:410,y:120,trigger:5,color:"#911eb4"}],
-flag:{x: 425, y: 100, theta: 0},
-portals:[{color: "#3cb44b", a:{x: 90, y: 250, theta: 0, loc: 1}, b: {x: 290, y: 120, theta: 0, loc: -1}},
-  {color: "#f58231", a:{x: 100, y: 270, theta: 0, loc: -1}, b: {x: 420, y: 180, theta: 0, loc: -1}},
-  {color: "#e6194B", a:{x: 120, y: 270, theta: 0, loc: -1}, b: {x: 240, y: 250, theta: 0, loc: 1}},
-  {color: "#4363d8", a:{x: 160, y: 280, theta: 0, loc: 1}, b: {x: 280, y: 240, theta: 0, loc: -1}},
-  {color: "#a9a9a9", a:{x: 240, y: 270, theta: 0, loc: -1}, b: {x: 300, y: 240, theta: 0, loc: -1}},
-  {color: "#911eb4", a:{x: 360, y: 210, theta: 0, loc: -1}, b: {x: 420, y: 160, theta: 0, loc: 1}}],
-startx: 105, 
-starty: 250,
-score:45},
 
 {levelText:"FUNHOUSE",
 floor:[{left:{x:475,y:80},right:{x:551,y:80},type:floor},
@@ -559,8 +528,10 @@ floor:[{left:{x:475,y:80},right:{x:551,y:80},type:floor},
 			right:{x:545,y:225,states:[{x:545,y:225},{x:0,y:0}]},
 			type:button,state:0,trig:1},
 	{type:move,left:{x:65,y:225},right:{x:105,y:225},
+		init:{left:{x:65,y:225},right:{x:105,y:225}},
 		update:function(t){
 			if(t%870<435){
+				console.log(this.left.x)
 				this.left.x +=1;
 				this.right.x +=1;
 			}else{
@@ -586,6 +557,7 @@ floor:[{left:{x:475,y:80},right:{x:551,y:80},type:floor},
 		right:{x:551,y:250,states:[{x:551,y:250},{x:0,y:0},{x:467.5,y:250}]},
 		type:button,trig:3,state:0},
 	{type:move,left:{x:240,y:325},right:{x:270,y:325},
+		init:{left:{x:240,y:325},right:{x:270,y:325}},
 		update:function(t){
 			if(t%198<99){
 				this.left.x +=1;
