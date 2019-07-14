@@ -157,7 +157,7 @@ function drawSwitch(f,level,gravity){
 			f.state = (f.state+1)%f.left.states.length;
 		}
 		count-=1;
-		if(count==0){
+		if(count==-1){
 			clearInterval(c);
 			pause=false;
 		}
